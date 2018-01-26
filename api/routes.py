@@ -24,7 +24,7 @@ def register():
 		}
 		return jsonify(responseObject), 400
 	user = Users(
-		email=email, 
+		email=email,
 		password=password
 	)
 	db.session.add(user)
@@ -37,7 +37,7 @@ def register():
 		'auth_token': auth_token.decode()
 	}
 	return jsonify(responseObject), 201
-		
+
 
 @app.route('/auth/login', methods=['POST'])
 def user_login():
@@ -92,7 +92,7 @@ def get_auth():
 			'message': 'Invalid token.'
 		}
 		return jsonify(responseObject), 401
-	
+
 @app.route('/auth/logout', methods=['POST'])
 def logout():
 	auth_header = request.headers.get('Authorization')
@@ -135,4 +135,3 @@ def get_blacklist_token(id):
 	if not token:
 		abort(400)
 	return jsonify({'token': token.token, 'blacklisted_on': token.blacklisted_on})
-
